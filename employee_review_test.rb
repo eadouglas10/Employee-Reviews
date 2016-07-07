@@ -30,7 +30,7 @@ class Test < Minitest::Test
   def test_get_total_salary
     @@things.add(@@bob)
     @@things.add(@@sue)
-    assert_equal @@things.total_sal, 110000
+    assert_equal @@things.total_sal, (@@bob.salary + @@sue.salary)
   end
 
   def test_emp_review
@@ -42,6 +42,11 @@ class Test < Minitest::Test
   def test_if_satisfactory
     @@sue.unsatisfactory
     assert @@bob.satisfactory? && !@@sue.satisfactory?
+  end
+
+  def test_give_raise
+    @@bob.raise(30000)
+    assert @@bob.salary == 80000
   end
 
 

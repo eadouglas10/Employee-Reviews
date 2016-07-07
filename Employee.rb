@@ -31,4 +31,8 @@ class Employee
     @is_satisfactory
   end
 
+  def raise(amount)
+    @salary += amount
+  end
+
 end
