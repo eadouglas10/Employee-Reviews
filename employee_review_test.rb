@@ -33,5 +33,11 @@ class Test < Minitest::Test
     assert_equal @@things.total_sal, 110000
   end
 
+  def test_emp_review
+    @@bob.add_review("Keep it up")
+    @@bob.add_review("Not as good today")
+    assert_equal @@bob.reviews, ["Keep it up", "Not as good today"]
+  end
+
 
 end
