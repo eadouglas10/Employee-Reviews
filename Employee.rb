@@ -12,11 +12,23 @@ class Employee
     @phone = phone
     @salary = salary
     @reviews = []
+    @is_satisfactory = true
   end
 
   def add_review(new_review)
     reviews.push(new_review)
   end
 
+  def satisfactory
+    @is_satisfactory = true
+  end
+
+  def unsatisfactory
+    @is_satisfactory = false
+  end
+
+  def satisfactory?
+    @is_satisfactory
+  end
 
 end

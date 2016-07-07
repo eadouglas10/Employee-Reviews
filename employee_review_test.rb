@@ -39,5 +39,10 @@ class Test < Minitest::Test
     assert_equal @@bob.reviews, ["Keep it up", "Not as good today"]
   end
 
+  def test_if_satisfactory
+    @@sue.unsatisfactory
+    assert @@bob.satisfactory? && !@@sue.satisfactory?
+  end
+
 
 end
