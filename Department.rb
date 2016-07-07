@@ -25,4 +25,15 @@ class Department
     sal
   end
 
+  def distribute_raise(amount)
+    good_employees = []
+    @employees.each do |x|
+      good_employees.push(x) if x.satisfactory?
+    end
+    each_raise = amount / good_employees.size
+    good_employees.each do |x|
+      x.give_raise(each_raise)
+    end
+  end
+
 end

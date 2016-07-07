@@ -7,8 +7,15 @@ require 'pry'
 class Test < Minitest::Test
 
   @@things ||= Department.new("good name")
+
   @@bob ||= Employee.new("Robert", "abc@123.com", 703, 50000)
   @@sue ||= Employee.new("Susan", "xyz@321.com", 202, 60000)
+  @@steph ||= Employee.new("Stephanie", "steph@steph.com", 301, 70000)
+  @@steph.unsatisfactory
+
+  @@things.add(@@bob)
+  @@things.add(@@sue)
+  @@things.add(@@steph)
 
   def test_can_create_department
     assert_equal @@things.name, "good name"
@@ -19,7 +26,6 @@ class Test < Minitest::Test
   end
 
   def test_add_emp_to_dept
-    @@things.add(@@bob)
     assert @@things.has(@@bob)
   end
 
@@ -28,9 +34,7 @@ class Test < Minitest::Test
   end
 
   def test_get_total_salary
-    @@things.add(@@bob)
-    @@things.add(@@sue)
-    assert_equal @@things.total_sal, (@@bob.salary + @@sue.salary)
+    assert_equal @@things.total_sal, (@@bob.salary + @@sue.salary + @@steph.salary)
   end
 
   def test_emp_review
@@ -45,8 +49,17 @@ class Test < Minitest::Test
   end
 
   def test_give_raise
-    @@bob.raise(30000)
+    @@bob.give_raise(30000)
     assert @@bob.salary == 80000
+    @@bob.give_raise(-30000)
+  end
+
+  def test_distribute_raise
+    @@things.distribute_raise(20000)
+    assert_equal @@bob.salary, 60000
+    assert_equal @@sue.salary, 70000
+    assert_equal @@steph.salary, 70000
+    @@things.distribute_raise(-20000)
   end
 
 

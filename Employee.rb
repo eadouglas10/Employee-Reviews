@@ -16,7 +16,7 @@ class Employee
   end
 
   def add_review(new_review)
-    reviews.push(new_review)
+    @reviews.push(new_review)
   end
 
   def satisfactory
@@ -31,7 +31,7 @@ class Employee
     @is_satisfactory
   end
 
-  def raise(amount)
+  def give_raise(amount)
     @salary += amount
   end
 
